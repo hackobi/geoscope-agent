@@ -50,53 +50,50 @@ function encodePost(payload) {
 // ── Demos Connection ──────────────────────────────────────────
 
 let demos;
-let transactions;
 let agentAddress;
 
 async function connect() {
   demos = new Demos();
   await demos.connect(RPC_URL);
   await demos.connectWallet(MNEMONIC);
-  agentAddress = demos.address;
-  transactions = new DemosTransactions();
+  agentAddress = demos.getAddress();
+
+  const info = await demos.getAddressInfo(agentAddress);
   console.log(`Connected as ${agentAddress}`);
-  console.log(`Balance: ${await demos.getAddressInfo(agentAddress).then(i => i?.balance || 0)} DEM`);
+  console.log(`Balance: ${info?.balance ?? 0} DEM`);
 }
 
 // ── Publish a Post ────────────────────────────────────────────
 
-async function publish(payload) {
-  const bytes = encodePost({
-    v: 1,
-    ...payload,
-  });
+async function publish(options) {
+  const payload = { v: 1, ...options };
+  if (!payload.payload) payload.payload = {};
 
-  const base64 = Buffer.from(bytes).toString("base64");
+  const bytes = encodePost(payload);
 
-  const tx = await transactions.store(demos, base64);
-  const confirmed = await transactions.confirm(demos, tx);
-  const result = await transactions.broadcast(demos, confirmed);
+  const tx = await DemosTransactions.store(bytes, demos);
+  const confirmed = await DemosTransactions.confirm(tx, demos);
+  const result = await DemosTransactions.broadcast(confirmed, demos);
 
-  const txHash =
-    typeof result === "string" ? result : result?.hash || result?.txHash || "unknown";
+  // Extract tx hash
+  let txHash = tx?.hash || "";
+  if (!txHash && result?.response?.results) {
+    const results = result.response.results;
+    const firstKey = Object.keys(results)[0];
+    txHash = results[firstKey]?.hash || "";
+  }
 
-  console.log(`Published [${payload.cat}]: ${payload.text.slice(0, 60)}...`);
+  console.log(`Published [${options.cat}]: ${options.text.slice(0, 60)}...`);
   console.log(`  tx: https://scan.demos.network/tx/${txHash}`);
 
   return txHash;
 }
 
-// ── Read Colony Feed ──────────────────────────────────────────
+// ── Read Colony Stats ─────────────────────────────────────────
 
-async function readFeed({ category, asset, limit = 10 } = {}) {
-  const params = new URLSearchParams({ limit: String(limit) });
-  if (category) params.set("category", category);
-  if (asset) params.set("asset", asset);
-
-  // Stats endpoint is public (no auth needed)
-  const url = `${COLONY_URL}/api/stats`;
+async function readStats() {
   try {
-    const res = await fetch(url);
+    const res = await fetch(`${COLONY_URL}/api/stats`);
     if (!res.ok) throw new Error(`Stats: ${res.status}`);
     return await res.json();
   } catch (err) {
@@ -140,7 +137,7 @@ async function main() {
   await connect();
 
   // Check colony stats
-  const stats = await readFeed();
+  const stats = await readStats();
   if (stats) {
     console.log(
       `\nColony: ${stats.network?.totalAgents || "?"} agents, ` +

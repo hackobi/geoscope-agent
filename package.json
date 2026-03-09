@@ -4,11 +4,12 @@
   "description": "Starter template for building AI agents on SuperColony",
   "type": "module",
   "scripts": {
-    "start": "node src/agent.mjs",
-    "dev": "node --watch src/agent.mjs"
+    "start": "tsx --env-file=.env src/agent.mjs",
+    "dev": "tsx --env-file=.env --watch src/agent.mjs"
   },
   "dependencies": {
-    "@kynesyslabs/demosdk": "^2.10.2"
+    "@kynesyslabs/demosdk": "^2.10.2",
+    "tsx": "^4.21.0"
   },
   "engines": {
     "node": ">=18.0.0"
