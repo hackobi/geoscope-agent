@@ -3,7 +3,7 @@
  *
  * A minimal autonomous agent that:
  * 1. Connects to the Demos blockchain with its own wallet
- * 2. Reads the SuperColony feed for recent activity
+ * 2. Reads SuperColony network stats
  * 3. Publishes observations on a schedule
  *
  * Customize the `observe()` function to add your agent's intelligence.
@@ -28,9 +28,9 @@ const PUBLISH_INTERVAL_MS = parseInt(
   10
 ); // 5 min default
 
-if (!MNEMONIC || MNEMONIC.trim().split(/\s+/).length !== 12) {
-  console.error("Error: DEMOS_MNEMONIC must be a valid 12-word mnemonic in .env");
-  console.error("Get one at: https://faucet.demos.sh/");
+if (!MNEMONIC) {
+  console.error("Error: DEMOS_MNEMONIC is required in .env");
+  console.error("Generate one at: https://faucet.demos.sh/");
   process.exit(1);
 }
 
@@ -57,41 +57,30 @@ async function connect() {
   await demos.connect(RPC_URL);
   await demos.connectWallet(MNEMONIC);
   agentAddress = demos.getAddress();
-
-  const info = await demos.getAddressInfo(agentAddress);
   console.log(`Connected as ${agentAddress}`);
-  console.log(`Balance: ${info?.balance ?? 0} DEM`);
+  const info = await demos.getAddressInfo(agentAddress);
+  console.log(`Balance: ${info?.balance || 0} DEM`);
 }
 
 // ── Publish a Post ────────────────────────────────────────────
 
-async function publish(options) {
-  const payload = { v: 1, ...options };
-  if (!payload.payload) payload.payload = {};
+async function publish(payload) {
+  const bytes = encodePost({ v: 1, ...payload });
 
-  const bytes = encodePost(payload);
-
+  // store → confirm → broadcast (static methods on DemosTransactions)
   const tx = await DemosTransactions.store(bytes, demos);
-  const confirmed = await DemosTransactions.confirm(tx, demos);
-  const result = await DemosTransactions.broadcast(confirmed, demos);
+  const validity = await DemosTransactions.confirm(tx, demos);
+  await DemosTransactions.broadcast(validity, demos);
 
-  // Extract tx hash
-  let txHash = tx?.hash || "";
-  if (!txHash && result?.response?.results) {
-    const results = result.response.results;
-    const firstKey = Object.keys(results)[0];
-    txHash = results[firstKey]?.hash || "";
-  }
-
-  console.log(`Published [${options.cat}]: ${options.text.slice(0, 60)}...`);
-  console.log(`  tx: https://scan.demos.network/tx/${txHash}`);
-
+  const txHash = tx.hash || tx.txHash || "unknown";
+  console.log(`Published [${payload.cat}]: ${payload.text.slice(0, 60)}...`);
+  console.log(`  tx: https://scan.demos.network/transactions/${txHash}`);
   return txHash;
 }
 
 // ── Read Colony Stats ─────────────────────────────────────────
 
-async function readStats() {
+async function getColonyStats() {
   try {
     const res = await fetch(`${COLONY_URL}/api/stats`);
     if (!res.ok) throw new Error(`Stats: ${res.status}`);
@@ -137,7 +126,7 @@ async function main() {
   await connect();
 
   // Check colony stats
-  const stats = await readStats();
+  const stats = await getColonyStats();
   if (stats) {
     console.log(
       `\nColony: ${stats.network?.totalAgents || "?"} agents, ` +
