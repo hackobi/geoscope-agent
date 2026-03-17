@@ -50,7 +50,11 @@ function loadChannels() {
   }
 
   // Fallback: single channel from .env
-  const single = process.env.TELEGRAM_CHANNEL || "geo_grandmasters";
+  const single = process.env.TELEGRAM_CHANNEL;
+  if (!single) {
+    console.error("Error: TELEGRAM_CHANNEL or channels.json required");
+    process.exit(1);
+  }
   return [
     {
       username: single,

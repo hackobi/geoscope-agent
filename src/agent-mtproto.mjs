@@ -15,7 +15,7 @@ const COLONY_URL = process.env.COLONY_URL || "https://www.supercolony.ai";
 const TELEGRAM_API_ID = parseInt(process.env.TELEGRAM_API_ID, 10);
 const TELEGRAM_API_HASH = process.env.TELEGRAM_API_HASH;
 const TELEGRAM_SESSION = process.env.TELEGRAM_SESSION || "";
-const TELEGRAM_CHANNEL = process.env.TELEGRAM_CHANNEL || "geo_grandmasters";
+const TELEGRAM_CHANNEL = process.env.TELEGRAM_CHANNEL;
 
 const CHECK_INTERVAL_MS = parseInt(process.env.CHECK_INTERVAL_MS || "60000", 10);
 const SESSION_FILE = ".telegram-session.txt";

@@ -7,11 +7,11 @@ Multi-channel AI geopolitical intelligence agent. Monitors Telegram channels via
 ```
 Telegram Channels          Analysis              Storage & Linking         Publishing
 ┌──────────────────┐    ┌──────────────┐    ┌────────────────────┐    ┌──────────────┐
-│ @geo_grandmasters│───▶│              │    │                    │    │              │
-│ @disclosetv      │───▶│  DeepSeek    │───▶│  OpenAI Embeddings │───▶│  DAHR        │
-│ @red_square_times│───▶│  Analysis    │    │  LanceDB Store     │    │  Attestation │
-│ @CIG_telegram    │───▶│              │    │  Cross-Linker      │    │              │
-│ @rektplebs       │───▶│              │    │                    │    │  MoltHive    │
+│ @channel_1       │───▶│              │    │                    │    │              │
+│ @channel_2       │───▶│  DeepSeek    │───▶│  OpenAI Embeddings │───▶│  DAHR        │
+│ @channel_3       │───▶│  Analysis    │    │  LanceDB Store     │    │  Attestation │
+│ @channel_4       │───▶│              │    │  Cross-Linker      │    │              │
+│ @channel_5       │───▶│              │    │                    │    │  MoltHive    │
 └──────────────────┘    └──────────────┘    └────────────────────┘    └──────────────┘
      MTProto Poller        per message         vector similarity        Demos blockchain
      (configurable          categorize          find connections         on-chain proof
@@ -51,13 +51,13 @@ Channels are defined in `channels.json`:
 {
   "channels": [
     {
-      "username": "geo_grandmasters",
+      "username": "your_channel_here",
       "topic": "geopolitics",
       "tags": ["geopolitics", "conflict", "diplomacy"],
       "pollIntervalMs": 60000
     },
     {
-      "username": "disclosetv",
+      "username": "another_channel",
       "topic": "breaking-news",
       "tags": ["news", "breaking", "global"],
       "pollIntervalMs": 60000
@@ -122,7 +122,7 @@ Returns vector-similar messages from LanceDB with scores and metadata.
 | `COLONY_URL` | `https://www.supercolony.ai` | SuperColony API |
 | `LANCEDB_PATH` | `./data/lancedb` | Vector DB storage path |
 | `TELEGRAM_CHANNELS` | — | Comma-separated channels (overrides channels.json) |
-| `TELEGRAM_CHANNEL` | `geo_grandmasters` | Single-channel fallback |
+| `TELEGRAM_CHANNEL` | — | Single-channel fallback |
 | `TELEGRAM_PHONE` | — | Phone number for Telegram auth |
 | `CHECK_INTERVAL_MS` | `60000` | Poll interval (single-channel fallback) |
 | `DRY_RUN` | `false` | Skip blockchain transactions |

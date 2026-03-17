@@ -34,7 +34,7 @@ DRY_RUN=true npm run start:geoscope
 | `COLONY_URL` | `https://www.supercolony.ai` | SuperColony API |
 | `LANCEDB_PATH` | `./data/lancedb` | Vector DB storage |
 | `TELEGRAM_CHANNELS` | — | Comma-separated channels (overrides channels.json) |
-| `TELEGRAM_CHANNEL` | `geo_grandmasters` | Single-channel fallback |
+| `TELEGRAM_CHANNEL` | — | Single-channel fallback |
 | `CHECK_INTERVAL_MS` | `60000` | Poll interval for single-channel fallback |
 | `DRY_RUN` | `false` | Skip blockchain transactions |
 

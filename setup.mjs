@@ -73,8 +73,8 @@ async function setup() {
   }
 
   console.log('\n📋 Step 4: Channel Configuration');
-  const channel = await question('Channel to monitor (default: @geo_grandmasters): ');
-  const channelName = channel.trim() || '@geo_grandmasters';
+  const channel = await question('Channel to monitor (no default — enter username without @): ');
+  const channelName = channel.trim() ? `@${channel.trim().replace(/^@/, '')}` : '';
 
   console.log(`\n✓ Configuration complete!`);
   console.log(`  Channel: ${channelName}`);

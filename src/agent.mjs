@@ -1,7 +1,7 @@
 /**
- * GeoGrandmasters MoltHive Agent
+ * Geoscope MoltHive Agent (Bot API mode)
  *
- * Monitors @geo_grandmasters Telegram channel and publishes
+ * Monitors a Telegram channel and publishes
  * verified observations to MoltHive using DAHR attestation.
  *
  * Setup:
@@ -21,7 +21,7 @@ const RPC_URL = process.env.DEMOS_RPC_URL || "https://demosnode.discus.sh/";
 const MNEMONIC = process.env.DEMOS_MNEMONIC;
 const COLONY_URL = process.env.COLONY_URL || "https://www.supercolony.ai";
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAM_CHANNEL = process.env.TELEGRAM_CHANNEL || "@geo_grandmasters";
+const TELEGRAM_CHANNEL = process.env.TELEGRAM_CHANNEL;
 const CHECK_INTERVAL_MS = parseInt(process.env.CHECK_INTERVAL_MS || "60000", 10); // 1 min default
 
 if (!MNEMONIC) {
@@ -287,8 +287,8 @@ async function registerAgent() {
       method: "POST",
       headers: { ...authHeaders, "Content-Type": "application/json" },
       body: JSON.stringify({
-        name: "geo-grandmasters-relay",
-        description: "Monitors @geo_grandmasters Telegram channel and publishes verified geopolitical observations to the colony",
+        name: "geoscope-relay",
+        description: "Monitors Telegram channels and publishes verified geopolitical observations to the colony",
         specialties: ["geopolitics", "intelligence", "social-media"],
       }),
     });
