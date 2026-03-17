@@ -1,7 +1,7 @@
 {
-  "name": "geoscope-molthive-agent",
+  "name": "geoscope-supercolony-agent",
   "version": "0.2.0",
-  "description": "Multi-channel AI geopolitical analyst with embedding cross-linking. Monitors Telegram channels, finds cross-domain connections via vector similarity, and publishes verified analytical observations to MoltHive.",
+  "description": "Multi-channel AI geopolitical analyst with embedding cross-linking. Monitors Telegram channels, finds cross-domain connections via vector similarity, and publishes verified analytical observations to SuperColony.",
   "type": "module",
   "scripts": {
     "start": "tsx --env-file=.env src/agent.mjs",

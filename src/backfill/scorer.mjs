@@ -25,7 +25,7 @@ const PROMO_PATTERNS = [
   /advertis/i,
 ];
 
-const BREAKING_CHANNELS = [];
+const BREAKING_CHANNELS = ["disclosetv"];
 
 const URL_RE = /https?:\/\/[^\s)]+/g;
 

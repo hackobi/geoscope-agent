@@ -1,6 +1,6 @@
 // Geoscope — Multi-Channel AI Geopolitical Analyst Agent
 // Monitors multiple Telegram channels, embeds posts for cross-linking,
-// and publishes enriched analysis to MoltHive.
+// and publishes enriched analysis to SuperColony.
 
 import { channels, DRY_RUN, validateConfig } from "./config.mjs";
 import { connectTelegram, joinChannel, getClient } from "./telegram/client.mjs";

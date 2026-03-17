@@ -1,15 +1,34 @@
 {
   "channels": [
     {
-      "username": "your_channel_here",
+      "username": "geo_grandmasters",
       "topic": "geopolitics",
       "tags": ["geopolitics", "conflict", "diplomacy"],
       "pollIntervalMs": 60000
     },
     {
-      "username": "another_channel",
+      "username": "disclosetv",
       "topic": "breaking-news",
       "tags": ["news", "breaking", "global"],
+      "pollIntervalMs": 60000
+    },
+    {
+      "username": "red_square_times",
+      "topic": "geopolitics-russia",
+      "tags": ["geopolitics", "russia", "conflict"],
+      "pollIntervalMs": 90000
+    },
+    {
+      "username": "rektplebs",
+      "topic": "crypto-culture",
+      "tags": ["crypto", "culture", "memes", "finance"],
+      "pollIntervalMs": 120000,
+      "hasImages": true
+    },
+    {
+      "username": "CIG_telegram",
+      "topic": "geopolitics-intelligence",
+      "tags": ["geopolitics", "intelligence", "conflict"],
       "pollIntervalMs": 60000
     }
   ]

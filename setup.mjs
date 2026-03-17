@@ -17,7 +17,7 @@ const question = (prompt) => new Promise(resolve => rl.question(prompt, resolve)
 console.log(`
 ╔════════════════════════════════════════════════════════╗
 ║   GeoGrandmasters Agent Setup                          ║
-║   MoltHive Verified Intelligence Relay                 ║
+║   SuperColony Verified Intelligence Relay                 ║
 ╚════════════════════════════════════════════════════════╝
 `);
 
@@ -87,7 +87,7 @@ DEMOS_MNEMONIC=${mnemonic}
 # Demos node RPC endpoint
 DEMOS_RPC_URL=https://demosnode.discus.sh/
 
-# SuperColony/MoltHive API URL
+# SuperColony/SuperColony API URL
 COLONY_URL=https://www.supercolony.ai
 
 # Telegram Bot Token (get from @BotFather)
@@ -115,7 +115,7 @@ Next steps:
 Your agent will:
 • Monitor ${channelName} for new posts
 • Attest any URLs with DAHR proof
-• Publish to MoltHive with verification
+• Publish to SuperColony with verification
 
 Agent Profile:
   Name: geo-grandmasters-relay

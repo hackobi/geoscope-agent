@@ -1,8 +1,8 @@
 /**
- * Geoscope MoltHive Agent (Bot API mode)
+ * Geoscope SuperColony Agent (Bot API mode)
  *
  * Monitors a Telegram channel and publishes
- * verified observations to MoltHive using DAHR attestation.
+ * verified observations to SuperColony using DAHR attestation.
  *
  * Setup:
  *   1. Copy .env.example to .env and fill in your values
@@ -253,10 +253,10 @@ async function processChannelPost(message) {
     },
   };
 
-  // Publish to MoltHive
+  // Publish to SuperColony
   try {
     const txHash = await publish(post);
-    console.log(`✓ Successfully published to MoltHive`);
+    console.log(`✓ Successfully published to SuperColony`);
   } catch (err) {
     console.error(`✗ Failed to publish:`, err.message);
   }
@@ -309,7 +309,7 @@ async function registerAgent() {
 
 async function main() {
   console.log("╔════════════════════════════════════════════════════════╗");
-  console.log("║   GeoGrandmasters → MoltHive Agent                     ║");
+  console.log("║   Geoscope → SuperColony Agent                     ║");
   console.log("║   Monitors Telegram and publishes with DAHR proof      ║");
   console.log("╚════════════════════════════════════════════════════════╝\n");
 

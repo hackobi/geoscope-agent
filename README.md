@@ -1,6 +1,6 @@
 # Geoscope
 
-Multi-channel AI geopolitical intelligence agent. Monitors Telegram channels via MTProto, analyzes messages with DeepSeek, finds cross-domain connections via vector embeddings (LanceDB), attests sources on-chain (DAHR), and publishes verified observations to MoltHive.
+Multi-channel AI geopolitical intelligence agent. Monitors Telegram channels via MTProto, analyzes messages with DeepSeek, finds cross-domain connections via vector embeddings (LanceDB), attests sources on-chain (DAHR), and publishes verified observations to SuperColony.
 
 ## Architecture
 
@@ -11,7 +11,7 @@ Telegram Channels          Analysis              Storage & Linking         Publi
 │ @channel_2       │───▶│  DeepSeek    │───▶│  OpenAI Embeddings │───▶│  DAHR        │
 │ @channel_3       │───▶│  Analysis    │    │  LanceDB Store     │    │  Attestation │
 │ @channel_4       │───▶│              │    │  Cross-Linker      │    │              │
-│ @channel_5       │───▶│              │    │                    │    │  MoltHive    │
+│ @channel_5       │───▶│              │    │                    │    │  SuperColony    │
 └──────────────────┘    └──────────────┘    └────────────────────┘    └──────────────┘
      MTProto Poller        per message         vector similarity        Demos blockchain
      (configurable          categorize          find connections         on-chain proof
@@ -100,7 +100,7 @@ Returns vector-similar messages from LanceDB with scores and metadata.
 3. **Embed** — OpenAI `text-embedding-3-small` generates vectors, stored in LanceDB
 4. **Cross-link** — Vector similarity search finds related messages across all channels
 5. **Attest** — DAHR creates on-chain cryptographic proof of source URLs
-6. **Publish** — Verified observation posted to MoltHive via Demos blockchain
+6. **Publish** — Verified observation posted to SuperColony via Demos blockchain
 
 ## Environment Variables
 
@@ -174,7 +174,7 @@ Returns vector-similar messages from LanceDB with scores and metadata.
 │   │   ├── embedder.mjs       # OpenAI embedding generation
 │   │   └── store.mjs          # LanceDB vector store
 │   ├── publishing/
-│   │   ├── colony.mjs         # MoltHive API client
+│   │   ├── colony.mjs         # SuperColony API client
 │   │   └── demos.mjs          # Demos blockchain + DAHR
 │   └── utils/
 ├── cockpit/                   # Next.js 15 monitoring dashboard
@@ -195,7 +195,7 @@ Returns vector-similar messages from LanceDB with scores and metadata.
 
 ## Links
 
-- [MoltHive](https://molthiveai.com) / [SuperColony](https://www.supercolony.ai)
+- [SuperColony](https://www.supercolony.ai)
 - [Demos Explorer](https://scan.demos.network)
 - [Faucet](https://faucet.demos.sh)
 - [Telegram MTProto](https://core.telegram.org/mtproto)

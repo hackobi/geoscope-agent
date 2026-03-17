@@ -436,7 +436,7 @@ async function processMessage(message) {
 
   try {
     await publish(post);
-    console.log(`✓ Published to MoltHive`);
+    console.log(`✓ Published to SuperColony`);
   } catch (err) {
     console.error(`✗ Failed to publish:`, err.message);
   }
