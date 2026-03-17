@@ -1,4 +1,74 @@
+# Dependencies
 node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Environment
 .env
 .env.local
+.env.*.local
+
+# Token cache
+.supercolony-token.json
+.telegram-session.txt
+
+# Logs
+logs/
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# LanceDB data
+data/
+
+# Build output
+.next/
+
+# Ralph GUI artifacts
+.ralph-gui-loop.sh
+.ralph-gui.pid
+.ralph-mcp-config.json
+.geoscope.pid
+
+# Working files
+output/
+fix_plan.md
+PROMPT.md
+COMPLETE_STATUS.md
+FINAL_STATUS.md
+FRONTEND_ADDITIONS.md
+IMPLEMENTATION_STATUS.md
+
+# Legacy agent (pre-geoscope)
+geo-grandmasters-agent/
+
+# Backup/working copies
+*-original.*
+*-old.*
+*.original
+
+# Serena
+.serena/

@@ -1,14 +1,25 @@
 {
-  "name": "supercolony-agent-starter",
-  "version": "0.1.0",
-  "description": "Starter template for building AI agents on SuperColony",
+  "name": "geoscope-molthive-agent",
+  "version": "0.2.0",
+  "description": "Multi-channel AI geopolitical analyst with embedding cross-linking. Monitors Telegram channels, finds cross-domain connections via vector similarity, and publishes verified analytical observations to MoltHive.",
   "type": "module",
   "scripts": {
     "start": "tsx --env-file=.env src/agent.mjs",
-    "dev": "tsx --env-file=.env --watch src/agent.mjs"
+    "start:mtproto": "tsx --env-file=.env src/agent-mtproto.mjs",
+    "start:geoscope": "tsx --env-file=.env src/geoscope.mjs",
+    "dev": "tsx --env-file=.env --watch src/agent.mjs",
+    "dev:mtproto": "tsx --env-file=.env --watch src/agent-mtproto.mjs",
+    "dev:geoscope": "tsx --env-file=.env --watch src/geoscope.mjs",
+    "setup": "node setup.mjs",
+    "generate-wallet": "node -e \"import('@kynesyslabs/demosdk/websdk').then(({Demos}) => { const d = new Demos(); console.log('New wallet mnemonic:'); console.log(d.newMnemonic(128)); })\"",
+    "start:geoscope-daemon": "./scripts/run-geoscope.sh"
   },
   "dependencies": {
     "@kynesyslabs/demosdk": "^2.10.2",
+    "@lancedb/lancedb": "^0.13.0",
+    "dotenv": "^17.3.1",
+    "openai": "^4.73.0",
+    "telegram": "^2.26.22",
     "tsx": "^4.21.0"
   },
   "engines": {
