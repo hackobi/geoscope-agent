@@ -87,7 +87,7 @@ DEMOS_MNEMONIC=${mnemonic}
 # Demos node RPC endpoint
 DEMOS_RPC_URL=https://demosnode.discus.sh/
 
-# SuperColony/SuperColony API URL
+# SuperColony API URL
 COLONY_URL=https://www.supercolony.ai
 
 # Telegram Bot Token (get from @BotFather)
