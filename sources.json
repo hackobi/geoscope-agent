@@ -1,0 +1,105 @@
+{
+  "sources": [
+    {
+      "name": "reuters-world",
+      "type": "rss",
+      "url": "https://feeds.reuters.com/reuters/worldNews",
+      "topic": "breaking-news",
+      "tags": ["reuters", "news", "world"],
+      "pollIntervalMs": 300000,
+      "credibility": 0.9,
+      "enabled": true
+    },
+    {
+      "name": "bbc-world",
+      "type": "rss",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "topic": "breaking-news",
+      "tags": ["bbc", "news", "world"],
+      "pollIntervalMs": 300000,
+      "credibility": 0.9,
+      "enabled": true
+    },
+    {
+      "name": "aljazeera-world",
+      "type": "rss",
+      "url": "https://www.aljazeera.com/xml/rss/all.xml",
+      "topic": "geopolitics",
+      "tags": ["aljazeera", "news", "middle-east", "world"],
+      "pollIntervalMs": 300000,
+      "credibility": 0.85,
+      "enabled": true
+    },
+    {
+      "name": "rt-world",
+      "type": "rss",
+      "url": "https://www.rt.com/rss/news/",
+      "topic": "geopolitics-russia",
+      "tags": ["rt", "russia", "geopolitics"],
+      "pollIntervalMs": 300000,
+      "credibility": 0.5,
+      "enabled": false
+    },
+    {
+      "name": "hackernews-top",
+      "type": "http",
+      "url": "https://hacker-news.firebaseio.com/v0/topstories.json",
+      "topic": "tech-news",
+      "tags": ["tech", "startups", "hacker-news"],
+      "pollIntervalMs": 600000,
+      "credibility": 0.8,
+      "enabled": false,
+      "_note": "HN topstories is an array of IDs — requires a second fetch per item. Disable until adapter supports it."
+    },
+    {
+      "name": "reddit-geopolitics",
+      "type": "rss",
+      "url": "https://www.reddit.com/r/geopolitics/top/.rss?t=day",
+      "topic": "geopolitics",
+      "tags": ["reddit", "geopolitics", "analysis"],
+      "pollIntervalMs": 600000,
+      "credibility": 0.65,
+      "enabled": false
+    },
+    {
+      "name": "bellingcat",
+      "type": "rss",
+      "url": "https://www.bellingcat.com/feed/",
+      "topic": "geopolitics-intelligence",
+      "tags": ["osint", "investigation", "bellingcat"],
+      "pollIntervalMs": 600000,
+      "credibility": 0.92,
+      "enabled": true
+    },
+    {
+      "name": "theintercept",
+      "type": "rss",
+      "url": "https://theintercept.com/feed/?rss=1",
+      "topic": "geopolitics-intelligence",
+      "tags": ["investigative", "intelligence", "us-policy"],
+      "pollIntervalMs": 600000,
+      "credibility": 0.8,
+      "enabled": false
+    },
+    {
+      "name": "stratfor",
+      "type": "rss",
+      "url": "https://worldview.stratfor.com/rss.xml",
+      "topic": "geopolitics",
+      "tags": ["stratfor", "intelligence", "analysis"],
+      "pollIntervalMs": 600000,
+      "credibility": 0.9,
+      "enabled": false
+    },
+    {
+      "name": "cisa-alerts",
+      "type": "rss",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "topic": "cybersecurity",
+      "tags": ["cisa", "security", "alerts", "government"],
+      "pollIntervalMs": 300000,
+      "credibility": 0.95,
+      "enabled": true
+    }
+  ]
+}

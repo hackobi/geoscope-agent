@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { existsSync, readFileSync } from "fs";
+import os from "os";
 
 // ── Demos Blockchain ─────────────────────────────────────────
 export const RPC_URL = process.env.DEMOS_RPC_URL || "https://demosnode.discus.sh/";
@@ -66,6 +67,32 @@ function loadChannels() {
 }
 
 export const channels = loadChannels();
+
+// ── External Sources (RSS + HTTP APIs) ───────────────────────
+const SOURCES_FILE = "sources.json";
+
+function loadSources() {
+  if (existsSync(SOURCES_FILE)) {
+    try {
+      const raw = JSON.parse(readFileSync(SOURCES_FILE, "utf8"));
+      return (raw.sources || []).filter((s) => s.enabled !== false);
+    } catch (err) {
+      console.warn(`Failed to parse ${SOURCES_FILE}: ${err.message}`);
+    }
+  }
+  return [];
+}
+
+export const externalSources = loadSources();
+
+// ── Alert Push Notifications ─────────────────────────────────
+export const ALERT_BOT_TOKEN = process.env.ALERT_BOT_TOKEN;
+export const ALERT_CHAT_ID = process.env.ALERT_CHAT_ID;
+
+// ── Agent Identity (for agent mesh registration) ─────────────
+export const AGENT_ID = process.env.AGENT_ID || `geoscope-${os.hostname()}`;
+export const AGENT_NAME = process.env.AGENT_NAME || "Geoscope";
+export const COCKPIT_URL = process.env.COCKPIT_URL || "http://localhost:3002";
 
 // ── Validation ───────────────────────────────────────────────
 export function validateConfig() {

@@ -4,32 +4,226 @@
       "username": "geo_grandmasters",
       "topic": "geopolitics",
       "tags": ["geopolitics", "conflict", "diplomacy"],
-      "pollIntervalMs": 60000
+      "pollIntervalMs": 60000,
+      "credibility": 0.75
     },
     {
       "username": "disclosetv",
       "topic": "breaking-news",
       "tags": ["news", "breaking", "global"],
-      "pollIntervalMs": 60000
+      "pollIntervalMs": 60000,
+      "credibility": 0.6
     },
     {
       "username": "red_square_times",
       "topic": "geopolitics-russia",
       "tags": ["geopolitics", "russia", "conflict"],
-      "pollIntervalMs": 90000
+      "pollIntervalMs": 90000,
+      "credibility": 0.55
     },
     {
       "username": "rektplebs",
       "topic": "crypto-culture",
       "tags": ["crypto", "culture", "memes", "finance"],
       "pollIntervalMs": 120000,
-      "hasImages": true
+      "hasImages": true,
+      "credibility": 0.5
     },
     {
       "username": "CIG_telegram",
       "topic": "geopolitics-intelligence",
       "tags": ["geopolitics", "intelligence", "conflict"],
-      "pollIntervalMs": 60000
+      "pollIntervalMs": 60000,
+      "credibility": 0.7
+    },
+    {
+      "username": "GeopoliticsAndEmpire",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "empire", "analysis"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.65
+    },
+    {
+      "username": "iceagefarmer",
+      "topic": "food-security",
+      "tags": ["food", "agriculture", "supply-chain"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.55
+    },
+    {
+      "username": "VigilantFox",
+      "topic": "breaking-news",
+      "tags": ["news", "media", "censorship"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.5
+    },
+    {
+      "username": "geopolitics_prime",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "conflict", "iran", "middle-east"],
+      "pollIntervalMs": 60000,
+      "credibility": 0.7
+    },
+    {
+      "username": "DDGeopolitics",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "analysis", "strategy"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.7
+    },
+    {
+      "username": "dannyhaiphong",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "china", "anti-imperialism"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.6
+    },
+    {
+      "username": "rocknrollgeopolitics",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "analysis", "culture"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.6
+    },
+    {
+      "username": "RI_ReseauInternational",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "france", "multipolar"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.65
+    },
+    {
+      "username": "CathedralGR",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "europe", "orthodox"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.55
+    },
+    {
+      "username": "myLordBebo",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "commentary", "middle-east"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.55
+    },
+    {
+      "username": "bricsnews",
+      "topic": "geopolitics-brics",
+      "tags": ["geopolitics", "brics", "economics", "multipolar"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.65
+    },
+    {
+      "username": "sputnik_africa",
+      "topic": "geopolitics-africa",
+      "tags": ["geopolitics", "africa", "russia"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.5
+    },
+    {
+      "username": "infodefENGLAND",
+      "topic": "geopolitics-conflict",
+      "tags": ["geopolitics", "conflict", "military"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.65
+    },
+    {
+      "username": "sitreports",
+      "topic": "geopolitics-conflict",
+      "tags": ["geopolitics", "conflict", "sitrep", "military"],
+      "pollIntervalMs": 60000,
+      "credibility": 0.75
+    },
+    {
+      "username": "globaldissident",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "dissident", "analysis"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.6
+    },
+    {
+      "username": "ForeignAgentIntel",
+      "topic": "geopolitics-intelligence",
+      "tags": ["geopolitics", "intelligence", "espionage"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.65
+    },
+    {
+      "username": "brianlovethailand",
+      "topic": "geopolitics-asia",
+      "tags": ["geopolitics", "asia", "thailand", "southeast-asia"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.55
+    },
+    {
+      "username": "wartimedia",
+      "topic": "geopolitics-conflict",
+      "tags": ["geopolitics", "conflict", "military", "media"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.65
+    },
+    {
+      "username": "two_majors",
+      "topic": "geopolitics-conflict",
+      "tags": ["geopolitics", "conflict", "military", "russia"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.7
+    },
+    {
+      "username": "africaintel",
+      "topic": "geopolitics-africa",
+      "tags": ["geopolitics", "africa", "intelligence"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.65
+    },
+    {
+      "username": "informador_global",
+      "topic": "geopolitics",
+      "tags": ["geopolitics", "latin-america", "global"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.6
+    },
+    {
+      "username": "AMK_Mapping",
+      "topic": "geopolitics-conflict",
+      "tags": ["geopolitics", "conflict", "mapping", "osint"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.75
+    },
+    {
+      "username": "hacker_news_feed",
+      "topic": "tech-news",
+      "tags": ["tech", "startups", "hacker-news"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.75
+    },
+    {
+      "username": "thehackernews",
+      "topic": "cybersecurity",
+      "tags": ["security", "hacking", "vulnerabilities", "threats"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.8
+    },
+    {
+      "username": "r_CoolGithubProjects",
+      "topic": "tech-projects",
+      "tags": ["tech", "open-source", "github", "projects"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.65
+    },
+    {
+      "username": "malwr",
+      "topic": "cybersecurity",
+      "tags": ["security", "malware", "threats", "analysis"],
+      "pollIntervalMs": 90000,
+      "credibility": 0.75
+    },
+    {
+      "username": "Cyber_Security_Channel",
+      "topic": "cybersecurity",
+      "tags": ["security", "cyber", "infosec", "news"],
+      "pollIntervalMs": 120000,
+      "credibility": 0.7
     }
   ]
 }

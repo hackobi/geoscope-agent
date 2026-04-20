@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
+    "@kynesyslabs/demosdk": "^2.11.5",
     "@lancedb/lancedb": "^0.26.2",
     "next": "^15.5.12",
     "openai": "^6.29.0",

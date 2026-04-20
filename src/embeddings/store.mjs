@@ -4,11 +4,15 @@ import { LANCEDB_PATH } from "../config.mjs";
 import { embed } from "./embedder.mjs";
 
 const TABLE_NAME = "posts";
+const OPTIMIZE_EVERY_N_WRITES = 500;
+const OPTIMIZE_RETENTION_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 let db;
 let table;
 let ready = false;
 let tableCreating = null; // mutex for first table creation
+let writesSinceOptimize = 0;
+let optimizing = false;
 
 export async function init() {
   try {
@@ -30,6 +34,27 @@ export async function init() {
 
 export function isReady() {
   return ready && db !== undefined;
+}
+
+export function needsOptimize() {
+  return writesSinceOptimize >= OPTIMIZE_EVERY_N_WRITES;
+}
+
+export async function optimize() {
+  if (!ready || !table || optimizing) return;
+  optimizing = true;
+  try {
+    console.log("[VectorStore] Running optimize (compact + prune old versions)...");
+    const stats = await table.optimize({
+      cleanupOlderThan: new Date(Date.now() - OPTIMIZE_RETENTION_MS),
+    });
+    console.log(`[VectorStore] Compacted: ${JSON.stringify(stats.compaction)}, Pruned: ${JSON.stringify(stats.prune)}`);
+    writesSinceOptimize = 0;
+  } catch (err) {
+    console.warn("[VectorStore] Optimize failed:", err.message);
+  } finally {
+    optimizing = false;
+  }
 }
 
 export async function store(record) {
@@ -73,6 +98,8 @@ export async function store(record) {
     } else {
       await table.add([row]);
     }
+
+    writesSinceOptimize++;
   } catch (err) {
     console.warn("Vector store insert failed:", err.message);
   }

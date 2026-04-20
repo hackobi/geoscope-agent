@@ -4,6 +4,10 @@ import { Demos, DemosTransactions } from "@kynesyslabs/demosdk/websdk";
 import { RPC_URL, MNEMONIC, DRY_RUN } from "../config.mjs";
 import { encodePost } from "../utils/hive.mjs";
 
+const FAUCET_URL = "https://faucetbackend.demos.sh/api/request";
+const BALANCE_CHECK_INTERVAL_MS = 30 * 60 * 1000; // every 30 minutes
+const BALANCE_LOW_THRESHOLD = 10; // request faucet when below this
+
 let demos;
 let agentAddress;
 
@@ -49,6 +53,41 @@ export async function attestUrl(url) {
     console.warn(`DAHR attestation failed for ${url}:`, err.message);
     return null;
   }
+}
+
+export async function checkAndRefillBalance() {
+  if (!demos || !agentAddress) return;
+  try {
+    const info = await demos.getAddressInfo(agentAddress);
+    const balance = Number(info?.balance ?? 0);
+    console.log(`[Balance] Current: ${balance} DEM`);
+
+    if (balance < BALANCE_LOW_THRESHOLD) {
+      console.log(`[Balance] Below threshold (${BALANCE_LOW_THRESHOLD}) — requesting faucet...`);
+      const res = await fetch(FAUCET_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address: agentAddress }),
+        signal: AbortSignal.timeout(15000),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        console.warn(`[Balance] Faucet request failed: ${data?.message || res.status}`);
+      } else {
+        const body = data.body || data;
+        console.log(`[Balance] Faucet granted: ${body.amount ?? "?"} DEM — tx: ${body.txHash ?? "unknown"}`);
+      }
+    }
+  } catch (err) {
+    console.warn(`[Balance] Check failed: ${err.message}`);
+  }
+}
+
+export function startBalanceWatcher() {
+  if (DRY_RUN) return;
+  // Run once immediately, then on interval
+  checkAndRefillBalance();
+  setInterval(checkAndRefillBalance, BALANCE_CHECK_INTERVAL_MS);
 }
 
 export async function publish(payload) {

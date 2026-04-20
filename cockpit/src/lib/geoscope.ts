@@ -79,6 +79,38 @@ export interface LogStats {
   categoryCounts: { ALERT: number; ANALYSIS: number; OBSERVATION: number };
 }
 
+export interface ChannelConfigWithCredibility extends ChannelConfig {
+  credibility?: number;
+}
+
+export interface AgentRecord {
+  agentId: string;
+  name: string;
+  type: string;
+  host: string;
+  status: "running" | "stale" | "offline";
+  uptimeMs: number;
+  channels: number;
+  externalSources: number;
+  stats: { totalPublished: number; totalEmbedded: number; alertCount: number };
+  lastActivity: number;
+  lastHeartbeat: number;
+  registeredAt: number;
+}
+
+export interface Story {
+  id: string;
+  title: string;
+  topic: string;
+  firstSeen: number;
+  lastSeen: number;
+  postCount: number;
+  hasAlert: boolean;
+  archived: boolean;
+  channels: string[];
+  posts: Array<{ channel: string; messageId: number; similarity: number; addedAt: number }>;
+}
+
 export interface StatusResponse {
   alive: boolean;
   pid: number | null;

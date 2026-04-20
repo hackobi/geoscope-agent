@@ -58,6 +58,9 @@ export class MultiChannelPoller {
         minId: chState.lastMessageId,
       });
 
+      // Successful fetch — notify heartbeat callback
+      if (this.onHeartbeat) this.onHeartbeat();
+
       // Filter new messages, process oldest first
       const newMessages = messages
         .filter((m) => m.id > chState.lastMessageId)

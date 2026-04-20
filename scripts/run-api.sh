@@ -3,9 +3,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-PID_FILE="$PROJECT_DIR/.geoscope.pid"
+PID_FILE="$PROJECT_DIR/.api.pid"
 LOG_DIR="$PROJECT_DIR/logs"
-DAEMON_LOG="$LOG_DIR/geoscope-daemon.log"
+DAEMON_LOG="$LOG_DIR/api-daemon.log"
 COOLDOWN=10
 MAX_COOLDOWN=300
 
@@ -16,7 +16,7 @@ log() {
 }
 
 cleanup() {
-  log "Received shutdown signal — stopping geoscope"
+  log "Received shutdown signal — stopping API"
   if [[ -n "${CHILD_PID:-}" ]] && kill -0 "$CHILD_PID" 2>/dev/null; then
     kill "$CHILD_PID" 2>/dev/null
     wait "$CHILD_PID" 2>/dev/null || true
@@ -33,7 +33,7 @@ trap cleanup SIGINT SIGTERM
 
 # Write wrapper PID
 echo $$ > "$PID_FILE"
-log "Geoscope daemon started (wrapper PID $$)"
+log "API daemon started (wrapper PID $$)"
 
 # Prevent Mac sleep
 caffeinate -i -w $$ &
@@ -44,17 +44,17 @@ cd "$PROJECT_DIR"
 CONSECUTIVE_FAILURES=0
 
 while true; do
-  log "Starting geoscope agent..."
+  log "Starting Geoscope API..."
   START_TIME=$(date +%s)
-  npx tsx --env-file=.env src/geoscope.mjs >> "$LOG_DIR/geoscope-production.log" 2>&1 &
+  npx tsx --env-file=.env src/api.mjs >> "$LOG_DIR/api-production.log" 2>&1 &
   CHILD_PID=$!
-  log "Agent running (PID $CHILD_PID)"
+  log "API running (PID $CHILD_PID)"
 
   wait "$CHILD_PID" || true
   EXIT_CODE=$?
   END_TIME=$(date +%s)
   RUNTIME=$((END_TIME - START_TIME))
-  log "Agent exited with code $EXIT_CODE after ${RUNTIME}s"
+  log "API exited with code $EXIT_CODE after ${RUNTIME}s"
 
   # If it ran for more than 2 minutes, reset failure counter
   if [[ "$RUNTIME" -gt 120 ]]; then
